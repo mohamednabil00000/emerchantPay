@@ -8,6 +8,7 @@ It is a simple payment system.
 * Dockerfile and Docker Compose configuration
 * PostgreSQL database
 * Rubocop for linting
+* Rspec & Factorybot
 
 ## Requirements
 
@@ -44,11 +45,6 @@ When no container running yet, start up a new one:
 ```
 $ docker-compose run --rm app bin/rails c
 ```
-## Running tests
-```
-$ docker-compose run --rm app bin/rspec
-```
-
 ## Author
 
 **Mohamed Nabil**
