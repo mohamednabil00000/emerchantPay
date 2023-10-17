@@ -5,6 +5,8 @@ It is a simple payment system.
 ## Features
 * Rails 7
 * Ruby 3.2.1
+* PostgreSQL database
+* Rubocop for linting
 
 ## Initial setup
 ```
