@@ -9,6 +9,9 @@ It is a simple payment system.
 * PostgreSQL database
 * Rubocop for linting
 * Rspec & Factorybot
+* GitHub Actions for
+  * tests
+  * Rubocop for linting
 
 ## Requirements
 
