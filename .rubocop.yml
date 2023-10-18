@@ -5,6 +5,10 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/**/**/*.rb'
+
 Metrics/MethodLength:
   Max: 10
 Style/Documentation:
