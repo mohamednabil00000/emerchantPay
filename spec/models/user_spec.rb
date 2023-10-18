@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       let!(:user3) { create(:user, status: :inactive, email: 'email3@gmail.com') }
 
       it 'return active users' do
-        expect(described_class.active).to eq([user1, user2])
+        expect(described_class.active).to match_array([user1, user2])
       end
     end
   end
