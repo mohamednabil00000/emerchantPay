@@ -13,6 +13,9 @@ It is a simple payment system.
   * tests
   * Rubocop for linting
 
+## Assumptions
+- User has only one role. (admin or merchant)
+
 ## Requirements
 
 Please ensure you have docker & docker-compose
