@@ -42,6 +42,13 @@ $ docker-compose --env-file ../.env build
 $ docker-compose --env-file ../.env up
 ```
 
+## import users
+```
+$ rake import_users:import_users\[csv_file_path\]
+
+you can find the example of csv file in spec/tasks/users_csv.csv
+```
+
 ## Running the Rails console
 When the app is already running with `docker-compose` up, attach to the container:
 ```
