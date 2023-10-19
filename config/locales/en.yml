@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      unauthorized: 'unauthorized'
+      invalid_format: 'invalid format'
+      password_too_short: 'should be more than 7 chars'
+      password_too_long: 'should be less than 17 chars'
