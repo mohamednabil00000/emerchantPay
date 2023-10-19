@@ -33,6 +33,6 @@ ActiveRecord::Schema[7.0].define(version: 20_231_018_151_339) do
     t.string 'status', default: 'active'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_users_on_email'
+    t.index ['email'], name: 'unique_emails', unique: true
   end
 end

@@ -8,7 +8,8 @@ class User < ApplicationRecord
   enum statuses: %i[active inactive]
   enum roles: %i[admin merchant]
 
-  validates :email, :name, presence: true
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, maximum: 16, too_short: I18n.t('errors.messages.password_too_short'),
                                  too_long: I18n.t('errors.messages.password_too_long') }, if: :password_required?
   validates :email, format: { with: /\A.+@.+\.\w{2,6}\Z/, message: I18n.t('errors.messages.invalid_format') },

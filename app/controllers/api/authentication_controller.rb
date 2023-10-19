@@ -8,8 +8,7 @@ module Api
     def login
       result = auth_service.login(email: params[:email], password: params[:password])
       if result.successful?
-        @user = result.attributes[:user]
-        render json: { token: result.attributes[:token] }, status: :ok
+        render json: AuthPresenter.login(user: result.attributes[:user], token: result.attributes[:token]), status: :ok
       else
         render json: result.attributes, status: :unauthorized
       end
@@ -18,7 +17,7 @@ module Api
     private
 
     def auth_service
-      @auth_service ||= ::AuthService.new
+      @auth_service ||= AuthService.new
     end
   end
 end

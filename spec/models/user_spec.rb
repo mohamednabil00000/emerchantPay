@@ -3,9 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  subject { create(:user, email: 'test@gmail.com') }
+
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_uniqueness_of :email }
     it { is_expected.to validate_presence_of :password }
     it { should validate_inclusion_of(:status).in_array(%i[active inactive]) }
     it { should validate_inclusion_of(:role).in_array(%i[admin merchant]) }
