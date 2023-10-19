@@ -1,0 +1,3 @@
+role,name,email,password,password_confirmation,status,description
+admin,mohamed,nabil@gmail.com,123456789,123456789,active,
+merchant,adam,mohamed@gmail.com,123456789,123456789,active,good merchant
