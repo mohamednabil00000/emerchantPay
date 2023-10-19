@@ -21,7 +21,7 @@ class User < ApplicationRecord
   scope :active, -> { where(status: :active) }
 
   def self.find_authenticated(args = {})
-    user = find_by(email: args[:email])
+    user = find_by(email: args[:email], status: :active)
     user if user&.authenticate(args[:password])
   end
 

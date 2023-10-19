@@ -37,4 +37,32 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#find_authenticated' do
+    let(:user) { create(:user, email: 'test@test.com', password: '12345678', name: 'test') }
+    let(:inactive_user) do
+      create(:user, email: 'test2@test.com', password: '12345678', name: 'test2', status: :inactive)
+    end
+
+    context '#success' do
+      it 'when user exists' do
+        expect(described_class.find_authenticated(email: user.email, password: user.password)).to eq user
+      end
+    end
+
+    context '#failure' do
+      it 'when user is inactive' do
+        expect(described_class.find_authenticated(email: inactive_user.email,
+                                                  password: inactive_user.password)).to be_nil
+      end
+
+      it 'when the password is wrong' do
+        expect(described_class.find_authenticated(email: user.email, password: '1234568')).to be_nil
+      end
+
+      it 'when the email does not exist before' do
+        expect(described_class.find_authenticated(email: 'test@tes.com', password: '12345678')).to be_nil
+      end
+    end
+  end
 end
