@@ -11,7 +11,13 @@ RSpec.describe 'Authentications', type: :request do
         post '/auth/login', params: { email: 'test@test.com', password: '12345678' }
 
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body).keys).to contain_exactly('token')
+        body = JSON.parse(response.body)
+
+        expect(body.keys).to match_array(%w[token name email role status])
+        expect(body['name']).to eq user.name
+        expect(body['role']).to eq user.role
+        expect(body['status']).to eq user.status
+        expect(body['email']).to eq user.email
       end
     end
 
