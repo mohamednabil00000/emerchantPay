@@ -2,17 +2,15 @@
 
 require 'rails_helper'
 
-module Api
-  class TestController < Api::BaseController; end
-end
+class TestController < ApplicationController; end
 
-RSpec.describe Api::TestController, type: %i[api controller] do
+RSpec.describe TestController, type: %i[api controller] do
   include JsonWebToken
 
   let(:user) { create(:user, email: 'test@gmail.com') }
   let(:token) { jwt_encode(user_id: user.id) }
 
-  controller(Api::TestController) do
+  controller(TestController) do
     def index
       head :created
     end
