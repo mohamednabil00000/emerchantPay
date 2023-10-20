@@ -5,6 +5,7 @@ module Userable
 
   included do
     require 'securerandom'
+    include EmailValidatable
 
     has_secure_password
 
@@ -14,8 +15,6 @@ module Userable
     validates :email, presence: true, uniqueness: true
     validates :password, length: { minimum: 8, maximum: 16, too_short: I18n.t('errors.messages.password_too_short'),
                                    too_long: I18n.t('errors.messages.password_too_long') }, if: :password_required?
-    validates :email, format: { with: /\A.+@.+\.\w{2,6}\Z/, message: I18n.t('errors.messages.invalid_format') },
-                      if: :email_required?
     validates_presence_of :password_confirmation, if: :password_digest_changed?
     validates :status, inclusion: { in: statuses }
 
@@ -25,10 +24,6 @@ module Userable
 
     def password_required?
       password.present?
-    end
-
-    def email_required?
-      email.present?
     end
   end
 
