@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe AuthService do
+  include JsonWebToken
+
   describe '#login' do
     let(:subject) { described_class.new }
 
@@ -23,6 +25,23 @@ RSpec.describe AuthService do
           create(:merchant, email: 'test2@test.com', password: '12345678', name: 'test2', status: :inactive)
         end
         let(:user_type) { 'merchant' }
+      end
+    end
+  end
+
+  describe '#authenticate_request' do
+    let(:auth_header) { jwt_encode(user_id: current_user.id) }
+    context 'when user is admin' do
+      it_behaves_like 'user authenticate request service' do
+        let(:current_user) { create(:admin, email: 'test@gmail.com') }
+        let(:user_type_header) { 'admin' }
+      end
+    end
+
+    context 'when user is admin' do
+      it_behaves_like 'user authenticate request service' do
+        let(:current_user) { create(:merchant, email: 'test@gmail.com') }
+        let(:user_type_header) { 'merchant' }
       end
     end
   end

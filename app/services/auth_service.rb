@@ -13,6 +13,18 @@ class AuthService
     ResultError.new({ error: I18n.t('errors.messages.unauthorized') })
   end
 
+  def authenticate_request(auth_header:, user_type_header:)
+    return ResultError.new unless auth_header
+
+    decoded = jwt_decode(auth_header.split.last)
+    current_user = user_factory.find(user_type_header, decoded[:user_id])
+    return ResultError.new unless current_user
+
+    ResultSuccess.new({ current_user: })
+  rescue JWT::ExpiredSignature, JWT::DecodeError
+    ResultError.new
+  end
+
   private
 
   def user_factory
