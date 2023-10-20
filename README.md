@@ -14,7 +14,10 @@ It is a simple payment system.
   * Rubocop for linting
 
 ## Assumptions
-- User has only one role. (admin or merchant)
+- Amount is constant for all transactional types that belong to one transaction. That mean
+  the Refund transaction type will refund the whole amount not specific amount. I understood that
+  because we are going to change the status of Charge transaction to refunded and that's mean we 
+  refund the whole amount in charge transaction.
 
 ## Requirements
 
