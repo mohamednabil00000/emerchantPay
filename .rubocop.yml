@@ -11,6 +11,8 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 10
+Metrics/AbcSize:
+  Max: 20
 Style/Documentation:
   Enabled: false
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30

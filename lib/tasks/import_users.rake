@@ -7,11 +7,12 @@ namespace :import_users do
   task :import_users, [:csv_file_path] => :environment do |_t, args|
     csv_file_path = args[:csv_file_path]
     CSV.foreach(csv_file_path, headers: true) do |row|
-      user_service.create_user(row.to_h)
+      row_hash = row.to_h
+      user_factory.create(row_hash['role'], row_hash.except('role'))
     end
   end
 
-  def user_service
-    @user_service ||= UserService.new
+  def user_factory
+    @user_factory ||= UserFactory.new
   end
 end

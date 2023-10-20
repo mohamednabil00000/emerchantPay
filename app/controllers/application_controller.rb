@@ -15,9 +15,13 @@ class ApplicationController < ActionController::Base
 
     header = header.split.last
     decoded = jwt_decode(header)
-    @current_user = User.find_by(id: decoded[:user_id])
+    @current_user = user_factory.find(request.headers['UserType'], decoded[:user_id])
     head :unauthorized unless @current_user
   rescue JWT::ExpiredSignature, JWT::DecodeError
     head :unauthorized
+  end
+
+  def user_factory
+    @user_factory ||= UserFactory.new
   end
 end
