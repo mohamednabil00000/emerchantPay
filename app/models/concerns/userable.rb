@@ -2,7 +2,7 @@
 
 module Userable
   extend ActiveSupport::Concern
-  
+
   included do
     require 'securerandom'
 
