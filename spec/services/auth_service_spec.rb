@@ -30,18 +30,18 @@ RSpec.describe AuthService do
   end
 
   describe '#authenticate_request' do
-    let(:auth_header) { jwt_encode(user_id: current_user.id) }
+    let(:auth_header) { jwt_encode(user_id: current_user.id, user_type:) }
     context 'when user is admin' do
       it_behaves_like 'user authenticate request service' do
         let(:current_user) { create(:admin, email: 'test@gmail.com') }
-        let(:user_type_header) { 'admin' }
+        let(:user_type) { 'admin' }
       end
     end
 
     context 'when user is admin' do
       it_behaves_like 'user authenticate request service' do
         let(:current_user) { create(:merchant, email: 'test@gmail.com') }
-        let(:user_type_header) { 'merchant' }
+        let(:user_type) { 'merchant' }
       end
     end
   end

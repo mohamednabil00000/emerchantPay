@@ -8,7 +8,7 @@ RSpec.describe TestController, type: %i[api controller] do
   include JsonWebToken
 
   let(:admin) { create(:admin, email: 'test@gmail.com') }
-  let(:token) { jwt_encode(user_id: admin.id) }
+  let(:token) { jwt_encode(user_id: admin.id, user_type: 'admin') }
 
   controller(TestController) do
     def index
@@ -16,9 +16,8 @@ RSpec.describe TestController, type: %i[api controller] do
     end
   end
 
-  def make_request(params: {}, token: nil, user_type: 'admin')
+  def make_request(params: {}, token: nil)
     append_auth_header(token) if token
-    append_user_type_header(user_type)
     get :index, params:
   end
 

@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Authentications', type: :request do
-  def make_request(params: {}, user_type: 'admin')
-    post '/auth/login', params:, headers: { 'User-Type' => user_type }
+  def make_request(params: {})
+    post '/auth/login', params:
   end
 
   describe '#authenticate' do

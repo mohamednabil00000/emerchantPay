@@ -6,7 +6,7 @@ class AuthenticationController < ApplicationController
   # POST /auth/login
   def login
     result = auth_service.login(email: params[:email], password: params[:password],
-                                user_type: request.headers['User-Type'])
+                                user_type: params[:user_type])
     if result.successful?
       render json: AuthPresenter.login(user: result.attributes[:user], token: result.attributes[:token]), status: :ok
     else
