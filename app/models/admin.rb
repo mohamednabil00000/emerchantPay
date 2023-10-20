@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Merchant < ApplicationRecord
+class Admin < ApplicationRecord
   include Userable
 end
