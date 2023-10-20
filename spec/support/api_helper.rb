@@ -6,6 +6,6 @@ module ApiHelper
   end
 
   def append_user_type_header(user_type)
-    request.headers['UserType'] = user_type
+    request.headers['User-Type'] = user_type
   end
 end

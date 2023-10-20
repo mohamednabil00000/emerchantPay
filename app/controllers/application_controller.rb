@@ -1,27 +1,21 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include JsonWebToken
-
   before_action :authenticate_request
 
   protect_from_forgery
 
-  private
+  protected
 
   def authenticate_request
-    header = request.headers['Authorization']
-    return head :unauthorized unless header
+    result = auth_service.authenticate_request(auth_header: request.headers['Authorization'],
+                                               user_type_header: request.headers['User-Type'])
+    return head :unauthorized unless result.successful?
 
-    header = header.split.last
-    decoded = jwt_decode(header)
-    @current_user = user_factory.find(request.headers['UserType'], decoded[:user_id])
-    head :unauthorized unless @current_user
-  rescue JWT::ExpiredSignature, JWT::DecodeError
-    head :unauthorized
+    @current_user = result.attributes[:current_user]
   end
 
-  def user_factory
-    @user_factory ||= UserFactory.new
+  def auth_service
+    @auth_service ||= AuthService.new
   end
 end
