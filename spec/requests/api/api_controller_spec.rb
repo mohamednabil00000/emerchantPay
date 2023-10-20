@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-class TestController < ApplicationController; end
+class TestController < Api::ApiController; end
 
 RSpec.describe TestController, type: %i[api controller] do
   include JsonWebToken
