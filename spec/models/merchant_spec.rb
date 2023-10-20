@@ -5,6 +5,10 @@ require 'rails_helper'
 RSpec.describe Merchant, type: :model do
   subject { create(:merchant, email: 'test@gmail.com') }
 
+  describe 'associations' do
+    it { is_expected.to have_many(:customer_transactions).dependent(:destroy) }
+  end
+
   it_behaves_like 'validations'
 
   it_behaves_like 'scopes' do

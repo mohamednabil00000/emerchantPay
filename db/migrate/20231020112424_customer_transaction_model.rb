@@ -9,6 +9,7 @@ class CustomerTransactionModel < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :phone_number
       t.float :amount
+      t.references :merchant, null: false
 
       t.timestamps
     end

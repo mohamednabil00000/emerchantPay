@@ -6,5 +6,13 @@ class CustomerTransactionType < ApplicationRecord
   enum statuses: %i[approved reversed refunded error]
 
   validates :status, inclusion: { in: statuses }
-  validates_uniqueness_of :parent_id, scope: :type, message: I18n.t('errors.messages.record_already_exist')
+  validates :uuid, presence: true, uniqueness: true
+
+  def approved?
+    status == 'approved'
+  end
+
+  def merchant
+    parent.merchant
+  end
 end

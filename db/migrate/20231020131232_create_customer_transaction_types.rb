@@ -5,8 +5,9 @@ class CreateCustomerTransactionTypes < ActiveRecord::Migration[7.0]
 
   def change
     create_table :customer_transaction_types, id: :uuid do |t|
+      t.uuid 'uuid', null: false
       t.string 'type', null: false
-      t.string 'status', null: false
+      t.string 'status', null: false, default: :error
       t.uuid 'parent_id', null: false
       t.timestamps
     end

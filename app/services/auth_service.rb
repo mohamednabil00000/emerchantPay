@@ -5,7 +5,7 @@ class AuthService
 
   def login(email:, password:, user_type:)
     user = user_factory.login(user_type, email, password)
-    return ResultError.new({ error: I18n.t('errors.messages.unauthorized') }) unless user
+    return ResultError.new({ errors: [I18n.t('errors.messages.wrong_email_or_password')] }) unless user
 
     token = jwt_encode(user_id: user.id, user_type:)
     ResultSuccess.new({ user:, token: })

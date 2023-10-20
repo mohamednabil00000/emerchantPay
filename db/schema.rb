@@ -28,8 +28,9 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_131_232) do
   end
 
   create_table 'customer_transaction_types', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'uuid', null: false
     t.string 'type', null: false
-    t.string 'status', null: false
+    t.string 'status', default: 'error', null: false
     t.uuid 'parent_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
@@ -40,8 +41,10 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_131_232) do
     t.string 'email'
     t.string 'phone_number'
     t.float 'amount'
+    t.bigint 'merchant_id', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.index ['merchant_id'], name: 'index_customer_transactions_on_merchant_id'
     t.index ['uuid'], name: 'unique_uuid', unique: true
   end
 
