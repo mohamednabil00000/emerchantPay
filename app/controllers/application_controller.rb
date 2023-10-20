@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_request
-    result = auth_service.authenticate_request(auth_header: request.headers['Authorization'],
-                                               user_type_header: request.headers['User-Type'])
+    result = auth_service.authenticate_request(auth_header: request.headers['Authorization'])
     return head :unauthorized unless result.successful?
 
     @current_user = result.attributes[:current_user]
+    @user_type = result.attributes[:user_type]
   end
 
   def auth_service
