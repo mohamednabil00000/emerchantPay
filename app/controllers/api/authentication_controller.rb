@@ -14,11 +14,5 @@ module Api
         render json: result.attributes, status: :unauthorized
       end
     end
-
-    private
-
-    def auth_service
-      @auth_service ||= AuthService.new
-    end
   end
 end
