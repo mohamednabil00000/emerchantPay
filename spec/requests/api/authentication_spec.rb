@@ -2,11 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Authentications', type: :request do
-  def make_request(params: {})
-    post '/auth/login', params:
-  end
-
+RSpec.describe Api::AuthenticationController, type: %i[api controller] do
   describe '#authenticate' do
     context 'when user is admin' do
       it_behaves_like 'user login controller' do

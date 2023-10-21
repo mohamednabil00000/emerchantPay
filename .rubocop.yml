@@ -11,7 +11,7 @@ Metrics/BlockLength:
     - 'db/schema.rb'
 
 Metrics/MethodLength:
-  Max: 10
+  Max: 12
 Metrics/AbcSize:
   Max: 20
 Style/Documentation:

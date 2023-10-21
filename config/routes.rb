@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post '/auth/login', to: 'api/authentication#login'
+
+  namespace :api do
+    namespace :v1 do
+      resources :transactions, only: %i[create]
+    end
+  end
 end

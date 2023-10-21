@@ -3,7 +3,7 @@
 RSpec.shared_examples 'user login controller' do
   context '#success' do
     it 'when login successfully' do
-      make_request(params: { email: 'test@test.com', password: '12345678', user_type: })
+      post_request(params: { email: 'test@test.com', password: '12345678', user_type: }, path: :login)
 
       expect(response).to have_http_status(:ok)
       body = JSON.parse(response.body)
@@ -17,17 +17,17 @@ RSpec.shared_examples 'user login controller' do
 
   context '#failure' do
     it 'when the password is wrong' do
-      make_request(params: { email: 'test@test.com', password: '1234568', user_type: })
+      post_request(params: { email: 'test@test.com', password: '1234568', user_type: }, path: :login)
 
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)['error']).to eq 'unauthorized'
+      expect(JSON.parse(response.body)['errors']).to match_array(['Wrong email or Password!'])
     end
 
     it 'when the email does not exist before' do
-      make_request(params: { email: 'test@tes.com', password: '12345678', user_type: })
+      post_request(params: { email: 'test@tes.com', password: '12345678', user_type: }, path: :login)
 
       expect(response).to have_http_status(:unauthorized)
-      expect(JSON.parse(response.body)['error']).to eq 'unauthorized'
+      expect(JSON.parse(response.body)['errors']).to match_array(['Wrong email or Password!'])
     end
   end
 end
@@ -47,21 +47,21 @@ RSpec.shared_examples 'user login service' do
       result = subject.login(email: inactive_user.email, password: inactive_user.password, user_type:)
 
       expect(result).not_to be_successful
-      expect(result.attributes[:error]).to eq 'unauthorized'
+      expect(result.attributes[:errors]).to match_array(['Wrong email or Password!'])
     end
 
     it 'when the password is wrong' do
       result = subject.login(email: user.email, password: '1234568', user_type:)
 
       expect(result).not_to be_successful
-      expect(result.attributes[:error]).to eq 'unauthorized'
+      expect(result.attributes[:errors]).to match_array(['Wrong email or Password!'])
     end
 
     it 'when the email does not exist before' do
       result = subject.login(email: 'test@tes.com', password: '12345678', user_type:)
 
       expect(result).not_to be_successful
-      expect(result.attributes[:error]).to eq 'unauthorized'
+      expect(result.attributes[:errors]).to match_array(['Wrong email or Password!'])
     end
   end
 end

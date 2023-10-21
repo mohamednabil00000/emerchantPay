@@ -37,3 +37,5 @@ en:
       password_too_short: 'should be more than 7 chars'
       password_too_long: 'should be less than 17 chars'
       record_already_exist: 'Record already exists'
+      user_should_be_active_merchant: 'User should be active merchant'
+      wrong_email_or_password: 'Wrong email or Password!'

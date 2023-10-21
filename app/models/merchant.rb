@@ -2,4 +2,6 @@
 
 class Merchant < ApplicationRecord
   include Userable
+
+  has_many :transactions, dependent: :destroy
 end
