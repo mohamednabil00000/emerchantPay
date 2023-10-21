@@ -47,9 +47,13 @@ $ docker-compose --env-file ../.env up
 
 ## import users
 ```
-$ rake import_users:import_users\[csv_file_path\]
+$ rake import_users:import_users\['csv_file_path'\]
 
-you can find the example of csv file in spec/tasks/users_csv.csv
+for example
+
+$  rake import_users:import_users\['/Users/mnabil/emerchantpay/spec/tasks/users_csv.csv'\]
+
+you can find csv example file in spec/tasks/users_csv.csv
 ```
 
 ## Running the Rails console
@@ -60,6 +64,17 @@ $ docker-compose exec app bin/rails c
 When no container running yet, start up a new one:
 ```
 $ docker-compose run --rm app bin/rails c
+```
+## Postman script
+```
+There is a postman script that contains the both scenarios of the transactions.
+you can find it in postman folder.
+```
+
+## Seeds
+```
+email: admin@gmail.com   password: 12345678   role: admin
+email: merchant@gmail.com   password: 12345678   role: merchant
 ```
 ## Author
 

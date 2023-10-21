@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "e37d2bb3-5c33-4a55-9b97-7670c84302d6",
+		"name": "emerchant_pay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1369232"
+	},
+	"item": [
+		{
+			"name": "login as merchant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "UserType",
+						"value": "admin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"merchant@gmail.com\",\n    \"password\": \"12345678\",\n    \"user_type\": \"merchant\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login as admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "UserType",
+						"value": "admin",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"12345678\",\n    \"user_type\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create authorize transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3R5cGUiOiJtZXJjaGFudCIsImV4cCI6MTY5ODUzNDQzNH0.woMgkA3V2zWkR0mS28ZWnZJsdDBXh5VSxiF0EwXpTMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\" :{\n        \"uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68701e\",\n        \"transaction_type\": \"Authorize\",\n        \"amount\": 0.1,\n        \"customer_email\": \"nabil@gmail.com\",\n        \"customer_phone\": \"123434\",\n        \"status\": \"approved\",\n        \"merchant_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create charge transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3R5cGUiOiJtZXJjaGFudCIsImV4cCI6MTY5ODQ0MzA1OH0.N3NbKbwWyF6vVA32uFlQIV8l0bbvtehWsMo86BYtbRE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\" :{\n        \"uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68701f\",\n        \"transaction_type\": \"Charge\",\n        \"amount\": 0.1,\n        \"customer_email\": \"nabil@gmail.com\",\n        \"customer_phone\": \"123434\",\n        \"status\": \"approved\",\n        \"parent_uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68701e\",\n        \"merchant_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create refund transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3R5cGUiOiJtZXJjaGFudCIsImV4cCI6MTY5ODQ0MzA1OH0.N3NbKbwWyF6vVA32uFlQIV8l0bbvtehWsMo86BYtbRE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\" :{\n        \"uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68702f\",\n        \"transaction_type\": \"Refund\",\n        \"amount\": 0.1,\n        \"customer_email\": \"nabil@gmail.com\",\n        \"customer_phone\": \"123434\",\n        \"status\": \"approved\",\n        \"parent_uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68701e\",\n        \"merchant_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create authorize transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3R5cGUiOiJtZXJjaGFudCIsImV4cCI6MTY5ODQ0MzA1OH0.N3NbKbwWyF6vVA32uFlQIV8l0bbvtehWsMo86BYtbRE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\" :{\n        \"uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68709e\",\n        \"transaction_type\": \"Authorize\",\n        \"amount\": 0.1,\n        \"customer_email\": \"nabil@gmail.com\",\n        \"customer_phone\": \"123434\",\n        \"status\": \"approved\",\n        \"merchant_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create reversed transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3R5cGUiOiJtZXJjaGFudCIsImV4cCI6MTY5ODQ0MzA1OH0.N3NbKbwWyF6vVA32uFlQIV8l0bbvtehWsMo86BYtbRE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\" :{\n        \"uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68703e\",\n        \"transaction_type\": \"reversal\",\n        \"customer_email\": \"nabil@gmail.com\",\n        \"customer_phone\": \"123434\",\n        \"status\": \"approved\",\n        \"parent_uuid\": \"28f43c84-599b-4997-be0e-b1aa0d68709e\",\n        \"merchant_id\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
