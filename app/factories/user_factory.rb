@@ -2,25 +2,28 @@
 
 class UserFactory
   def find(user_type, user_id)
-    if user_type == 'admin'
+    case user_type.downcase
+    when 'admin'
       Admin.find_by(id: user_id)
-    elsif user_type == 'merchant'
+    when 'merchant'
       Merchant.find_by(id: user_id)
     end
   end
 
   def create(user_type, user_hash)
-    if user_type == 'admin'
+    case user_type.downcase
+    when 'admin'
       admin_service.create(user_hash.except('description'))
-    elsif user_type == 'merchant'
+    when 'merchant'
       merchant_service.create(user_hash)
     end
   end
 
   def login(user_type, email, password)
-    if user_type == 'admin'
+    case user_type.downcase
+    when 'admin'
       Admin.find_authenticated(email:, password:)
-    elsif user_type == 'merchant'
+    when 'merchant'
       Merchant.find_authenticated(email:, password:)
     end
   end
