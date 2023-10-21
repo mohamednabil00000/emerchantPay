@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module TransactionType
+module TransactionTypes
   class BaseService
     def initialize(args = {})
       @args = args

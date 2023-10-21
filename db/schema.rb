@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_020_131_232) do
+ActiveRecord::Schema[7.0].define(version: 20_231_020_112_424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -27,27 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_131_232) do
     t.index ['email'], name: 'unique_emails', unique: true
   end
 
-  create_table 'customer_transaction_types', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.uuid 'uuid', null: false
-    t.string 'type', null: false
-    t.string 'status', default: 'error', null: false
-    t.uuid 'parent_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
-
-  create_table 'customer_transactions', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
-    t.uuid 'uuid', null: false
-    t.string 'email'
-    t.string 'phone_number'
-    t.float 'amount'
-    t.bigint 'merchant_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['merchant_id'], name: 'index_customer_transactions_on_merchant_id'
-    t.index ['uuid'], name: 'unique_uuid', unique: true
-  end
-
   create_table 'merchants', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'email'
@@ -60,5 +39,18 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_131_232) do
     t.index ['email'], name: 'unique_merchants_emails', unique: true
   end
 
-  add_foreign_key 'customer_transaction_types', 'customer_transactions', column: 'parent_id', primary_key: 'uuid'
+  create_table 'transactions', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.uuid 'uuid', null: false
+    t.string 'email'
+    t.string 'phone_number'
+    t.float 'amount'
+    t.bigint 'merchant_id', null: false
+    t.string 'type', null: false
+    t.string 'status', default: 'error', null: false
+    t.uuid 'parent_uuid'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['merchant_id'], name: 'index_transactions_on_merchant_id'
+    t.index ['uuid'], name: 'unique_uuid', unique: true
+  end
 end

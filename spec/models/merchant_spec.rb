@@ -6,7 +6,7 @@ RSpec.describe Merchant, type: :model do
   subject { create(:merchant, email: 'test@gmail.com') }
 
   describe 'associations' do
-    it { is_expected.to have_many(:customer_transactions).dependent(:destroy) }
+    it { is_expected.to have_many(:transactions).dependent(:destroy) }
   end
 
   it_behaves_like 'validations'

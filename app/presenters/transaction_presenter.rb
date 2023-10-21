@@ -6,12 +6,12 @@ class TransactionPresenter
       id: transaction&.id,
       uuid: transaction&.uuid,
       transaction_type: transaction&.type,
-      status: transaction.status,
-      customer_email: transaction.parent.email,
-      customer_phone: transaction.parent.phone_number,
-      amount: transaction.parent.amount,
-      parent_uuid: transaction.parent.uuid,
-      merchant_id: transaction.parent.merchant_id
+      status: transaction&.status,
+      customer_email: transaction&.email,
+      customer_phone: transaction&.phone_number,
+      amount: transaction&.amount,
+      parent_uuid: transaction&.parent_uuid,
+      merchant_id: transaction&.merchant_id
     }
   end
 end

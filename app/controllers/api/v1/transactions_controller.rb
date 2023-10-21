@@ -7,7 +7,7 @@ module Api
 
       # POST /api/v1/transaction
       def create
-        transaction_type_service = trasaction_type_factory.call(create_transaction_params)
+        transaction_type_service = trasaction_factory.call(create_transaction_params)
         result = transaction_type_service.create
         if result.successful?
           render json: TransactionPresenter.transaction(transaction: result.attributes[:transaction]), status: :created
@@ -23,8 +23,8 @@ module Api
                                             :status, :merchant_id, :parent_uuid)
       end
 
-      def trasaction_type_factory
-        @trasaction_type_factory ||= TransactionTypeFactory.new
+      def trasaction_factory
+        @trasaction_factory ||= TransactionFactory.new
       end
 
       def check_merchant_status
