@@ -9,6 +9,7 @@ RSpec.describe SessionsController, type: %i[api controller] do
     it 'when login is successful' do
       post_request(params: { email: 'test@test.com', password: '12345678', user_type: }, path: :create)
       expect(session).to have_key(:auth_token)
+      expect(session[:auth_token]).not_to be_nil
       # TO-DO test the redirect
     end
 
