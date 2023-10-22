@@ -5,8 +5,6 @@ class TransactionsController < ApplicationController
     result = transaction_service.index
     @transactions = TransactionPresenter.transactions(transactions: result.attributes[:transactions])
     @num_of_pages = result.attributes[:num_of_pages]
-
-    render json: { transactions: @transactions, num_of_pages: @num_of_pages }, status: :ok
   end
 
   private

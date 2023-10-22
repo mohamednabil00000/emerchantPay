@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     result = auth_service.login(email: params[:email], password: params[:password], user_type: params[:user_type])
     if result.successful?
       session[:auth_token] = result.attributes[:token]
-      # TO-DO redirect to page of transactions
+      redirect_to controller: 'transactions', action: 'index'
     else
       flash[:notice] = I18n.t('errors.messages.wrong_email_or_password')
       redirect_to action: 'new'
