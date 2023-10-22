@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  root 'sessions#new'
   post '/auth/login', to: 'api/authentication#login'
 
   namespace :api do
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :transactions, only: %i[index]
   resources :sessions, only: [:create]
-
-  root 'sessions#new'
 end

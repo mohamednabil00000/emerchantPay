@@ -11,7 +11,14 @@ class TransactionPresenter
       customer_phone: transaction&.phone_number,
       amount: transaction&.amount,
       parent_uuid: transaction&.parent_uuid,
-      merchant_id: transaction&.merchant_id
+      merchant_id: transaction&.merchant_id,
+      merchant_name: transaction&.merchant&.name
     }
+  end
+
+  def self.transactions(transactions:)
+    transactions.map do |transaction|
+      transaction(transaction:)
+    end
   end
 end
