@@ -14,4 +14,8 @@ module ApiHelper
     append_auth_header(token) if token
     get path, params:
   end
+
+  def append_auth_token_session(token:)
+    session[:auth_token] = token
+  end
 end

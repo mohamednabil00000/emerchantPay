@@ -14,6 +14,7 @@ module EmerchantPay
     config.load_defaults 7.0
 
     Bundler.require(*Rails.groups)
+    config.eager_load_paths += Dir["#{config.root}/lib"]
 
     # Load dotenv only in development or test environment
     Dotenv::Railtie.load if %w[development test].include? ENV['RAILS_ENV']
