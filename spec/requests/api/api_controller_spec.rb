@@ -10,7 +10,7 @@ RSpec.describe TestController, type: %i[api controller] do
 
   controller(TestController) do
     def index
-      head :created
+      head :ok
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe TestController, type: %i[api controller] do
 
     it 'returns created' do
       get_request(path: :index, token:)
-      expect(response).to have_http_status(:created)
+      expect(response).to have_http_status(:ok)
     end
   end
 end
