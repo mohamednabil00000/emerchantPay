@@ -1,10 +1,19 @@
-class ContactForm
-    include ActiveModel::Model
-    attr_accessor :name, :email, :message
-    validates :name, :email, :message, presence: true
-    def submit
-      return false if invalid?
-      # send acknowledgement reply, and admin notification emails, etc
-      true
-    end
+# frozen_string_literal: true
+
+class LoginForm
+  include ActiveModel::Model
+  attr_accessor :email, :password, :user_type
+
+  validates :email, :password, :user_type, presence: true
+
+  def submit
+    result = auth_service.login(email:, password:, user_type:)
+    result.successful?
   end
+
+  private
+
+  def auth_service
+    @auth_service ||= AuthService.new
+  end
+end
