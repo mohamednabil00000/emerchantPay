@@ -13,4 +13,8 @@ Rails.application.routes.draw do
       resources :transactions, only: %i[create]
     end
   end
+
+  resources :sessions, only: [:create]
+
+  root 'sessions#new'
 end
