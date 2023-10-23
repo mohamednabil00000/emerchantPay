@@ -39,3 +39,6 @@ en:
       record_already_exist: 'Record already exists'
       user_should_be_active_merchant: 'User should be active merchant'
       wrong_email_or_password: 'Wrong email or Password!'
+      can_not_delete_merchant_has_transaction: 'Cannot delete Merchant has any transaction!'
+      merchant_successfully_destroyed: 'Merchant was successfully destroyed.'
+      merchant_successfully_updated: 'Merchant was successfully updated.'

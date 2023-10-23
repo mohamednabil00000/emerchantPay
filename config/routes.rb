@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :transactions, only: %i[index]
-  resources :sessions, only: [:create]
+  resources :sessions, only: %i[create]
+  resources :merchants, only: %i[edit update destroy index]
 end
