@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     auth_token.present?
   end
 
+  def admin?
+    @user_type == 'admin'
+  end
+
   def auth_token
     session[:auth_token]
   end
