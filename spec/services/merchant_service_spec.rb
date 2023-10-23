@@ -26,7 +26,7 @@ RSpec.describe MerchantService do
     let!(:merchant2) { create(:merchant, email: 'test2@gmail.com') }
 
     it 'renders a successful response' do
-      result = subject.index
+      result = subject.index(page: 1)
       expect(result).to be_successful
       expect(result.attributes[:merchants]).to match_array [merchant1, merchant2]
     end

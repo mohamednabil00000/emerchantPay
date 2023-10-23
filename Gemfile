@@ -58,6 +58,9 @@ gem 'sassc-rails'
 # Use for cron jobs
 gem 'whenever', require: false
 
+# Use for pagination
+gem 'will_paginate'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

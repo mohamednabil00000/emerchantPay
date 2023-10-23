@@ -6,9 +6,8 @@ class MerchantsController < ApplicationController
 
   # GET /merchants
   def index
-    result = merchant_service.index(page: params[:page], limit: params[:limit])
+    result = merchant_service.index(page: params[:page])
     @merchants = result.attributes[:merchants]
-    @num_of_pages = result.attributes[:num_of_pages]
   end
 
   # GET /merchants/:id/edit

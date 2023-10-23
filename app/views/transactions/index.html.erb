@@ -39,13 +39,5 @@
             </tbody>
         </table>
     <div>
-    <div class="row">
-        <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <% (1..@num_of_pages).to_a.each do |page_num| %>
-                <li class="page-item"><a class="page-link" href="/transactions?page=<%=page_num%>"><%= page_num %></a></li>
-            <% end %>
-        </ul>
-        </nav>
-    </div>
+    <%= will_paginate @transactions %>
 </div>
