@@ -6,13 +6,20 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    result = auth_service.login(email: params[:email], password: params[:password], user_type: params[:user_type])
+    email, password, user_type = login_params.values
+    result = auth_service.login(email:, password:, user_type:)
     if result.successful?
       session[:auth_token] = result.attributes[:token]
-      redirect_to controller: 'transactions', action: 'index'
+      redirect_to '/transactions'
     else
       flash[:notice] = I18n.t('errors.messages.wrong_email_or_password')
-      redirect_to action: 'new'
+      redirect_to '/'
     end
+  end
+
+  private
+
+  def login_params
+    params.permit(:email, :password, :user_type)
   end
 end
