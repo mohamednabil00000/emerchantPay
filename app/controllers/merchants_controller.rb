@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MerchantsController < ApplicationController
-  before_action :validate_user_permission
+  before_action :admin?
   before_action :current_merchant, only: %i[edit update destroy]
 
   # GET /merchants

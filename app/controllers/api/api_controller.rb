@@ -2,6 +2,8 @@
 
 module Api
   class ApiController < ActionController::API
+    include Permissions
+
     before_action :authenticate_request
 
     protected

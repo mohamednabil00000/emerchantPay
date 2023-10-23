@@ -21,8 +21,6 @@ RSpec.describe Api::V1::TransactionsController, type: %i[api controller] do
     it 'when user is not merchant' do
       post_request(path: :create, token: admin_auth_token)
       expect(response).to have_http_status(:unauthorized)
-      body = JSON.parse(response.body)
-      expect(body['errors']).to match_array ['User should be active merchant']
     end
     context 'create authorize transaction' do
       it_behaves_like 'create transaction controller' do

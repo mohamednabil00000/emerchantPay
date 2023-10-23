@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :exception
   before_action :authorize
+  include Permissions
 
   protected
 
@@ -22,10 +23,6 @@ class ApplicationController < ActionController::Base
 
   def session_valid?
     auth_token.present?
-  end
-
-  def admin?
-    @user_type == 'admin'
   end
 
   def auth_token

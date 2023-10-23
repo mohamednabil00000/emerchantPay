@@ -3,7 +3,7 @@
 module Api
   module V1
     class TransactionsController < Api::ApiController
-      before_action :check_merchant_status, only: %i[create]
+      before_action :merchant?, :check_merchant_status, only: %i[create]
 
       # POST /api/v1/transaction
       def create
@@ -28,7 +28,7 @@ module Api
       end
 
       def check_merchant_status
-        return if @user_type == 'merchant' && @current_user.status == 'active'
+        return if @current_user.status == 'active'
 
         render json: { errors: [I18n.t('errors.messages.user_should_be_active_merchant')] },
                status: :unauthorized
