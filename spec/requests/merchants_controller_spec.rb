@@ -53,7 +53,6 @@ RSpec.describe MerchantsController, type: %i[api controller] do
     it 'invalid email' do
       new_attributes[:email] = 'sdsds'
       put_request(path: :update, params: { id: merchant.id, merchant: new_attributes })
-      merchant.reload
 
       expect(flash[:notice]).to match_array ['Email invalid format']
       expect(response).to redirect_to "#{merchant_url(merchant)}/edit"
