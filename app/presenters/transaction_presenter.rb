@@ -12,7 +12,8 @@ class TransactionPresenter
       amount: transaction&.amount,
       parent_uuid: transaction&.parent_uuid,
       merchant_id: transaction&.merchant_id,
-      merchant_name: transaction&.merchant&.name
+      merchant_name: transaction&.merchant&.name,
+      created_at: transaction.created_at
     }
   end
 

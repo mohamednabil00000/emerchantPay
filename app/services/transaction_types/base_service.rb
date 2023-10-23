@@ -11,7 +11,7 @@ module TransactionTypes
     end
 
     def index
-      @transactions = Transaction.includes(:merchant)
+      @transactions = Transaction.sort_by_created_at.includes(:merchant)
       @transactions = @transactions.where(merchant_id: current_user.id) if merchant?
 
       num_of_pages = 1

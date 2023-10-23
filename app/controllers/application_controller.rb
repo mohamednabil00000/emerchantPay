@@ -8,14 +8,12 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless session_valid?
-      return render json: { errors: [I18n.t('errors.messages.unauthorized')] },
-                    status: :unauthorized
+      return render json: { errors: [I18n.t('errors.messages.unauthorized')] }, status: :unauthorized
     end
 
     result = auth_service.authenticate_request(auth_header: auth_token)
     unless result.successful?
-      return render json: { errors: [I18n.t('errors.messages.unauthorized')] },
-                    status: :unauthorized
+      return render json: { errors: [I18n.t('errors.messages.unauthorized')] }, status: :unauthorized
     end
 
     @current_user = result.attributes[:current_user]

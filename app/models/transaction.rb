@@ -10,6 +10,8 @@ class Transaction < ApplicationRecord
   validates :uuid, presence: true, uniqueness: true
   validates :status, inclusion: { in: statuses }
 
+  scope :sort_by_created_at, -> { order(:created_at) }
+
   def approved?
     status == 'approved'
   end
