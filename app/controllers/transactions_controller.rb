@@ -3,7 +3,7 @@
 class TransactionsController < ApplicationController
   def index
     result = transaction_service.index
-    @transactions = TransactionPresenter.transactions(transactions: result.attributes[:transactions])
+    @transactions = result.attributes[:transactions]
     @num_of_pages = result.attributes[:num_of_pages]
   end
 
