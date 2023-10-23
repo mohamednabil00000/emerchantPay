@@ -6,6 +6,7 @@
         <th scope="col">Email</th>
         <th scope="col">Description</th>
         <th scope="col">Total transactions sum</th>
+        <th scope="col">Status</th>
         <th scope="col">Created at</th>
         <th scope="col" colspan="3">Actions</th>
     </tr>
@@ -18,6 +19,7 @@
                 <td><%=merchant.email %></td>
                 <td><%=merchant.description %></td>
                 <td><%=merchant.total_transaction_sum %></td>
+                <td><%=merchant.status %></td>
                 <td><%=merchant.created_at %></td>
                 <td><%= link_to 'Edit', edit_merchant_path(merchant), class: 'btn btn-success' %></td>
                 <td><%= link_to 'Delete', merchant_path(merchant), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
