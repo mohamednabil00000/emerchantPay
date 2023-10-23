@@ -45,15 +45,21 @@ $ docker-compose --env-file ../.env build
 $ docker-compose --env-file ../.env up
 ```
 
-## import users
+## Tasks
 ```
-$ rake import_users:import_users\['csv_file_path'\]
+# Import users
+
+$ rake users:import\['csv_file_path'\]
 
 for example
 
-$  rake import_users:import_users\['/Users/mnabil/emerchantpay/spec/tasks/users_csv.csv'\]
+$  rake users:import\['/Users/mnabil/emerchantpay/spec/tasks/csv_files/users_csv.csv'\]
 
-you can find csv example file in spec/tasks/users_csv.csv
+you can find csv example file in spec/tasks/csv_files/users_csv.csv
+
+# Delete transaction older than one hour
+
+$ rake transactions:delete
 ```
 
 ## Running the Rails console

@@ -20,12 +20,18 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'scopes' do
-    include_context 'charge transaction record'
+    include_context 'charge transaction record from one hour ago'
     describe '#sort_by_created_at' do
       it 'charge should be before authorize' do
-        charge_transaction.update!(created_at: 1.day.ago)
-        transaction = described_class.sort_by_created_at
-        expect(transaction).to eq [charge_transaction, authorize_transaction]
+        transactions = described_class.sort_by_created_at
+        expect(transactions).to eq [charge_transaction, authorize_transaction]
+      end
+    end
+
+    describe '#older_than_one_hour' do
+      it 'should return authorize transaction' do
+        transactions = described_class.older_than_one_hour
+        expect(transactions).to eq [charge_transaction]
       end
     end
   end

@@ -1,6 +1,6 @@
 FROM ruby:3.2.1
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client cron
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
@@ -18,6 +18,9 @@ RUN chmod +x /usr/bin/startup.sh
 
 COPY /docker/prepare-db.sh /usr/bin/
 RUN chmod +x /usr/bin/prepare-db.sh
+
+COPY /docker/prepare-cron-jobs.sh /usr/bin/
+RUN chmod +x /usr/bin/prepare-cron-jobs.sh
 
 ENTRYPOINT ["/usr/bin/startup.sh"]
 EXPOSE 3000
