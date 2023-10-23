@@ -11,7 +11,10 @@ Metrics/BlockLength:
     - 'db/schema.rb'
 
 Metrics/MethodLength:
-  Max: 12
+  Max: 10
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'app/presenters/transaction_presenter.rb'
 Metrics/AbcSize:
   Max: 20
 Style/Documentation:

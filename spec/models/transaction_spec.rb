@@ -19,6 +19,17 @@ RSpec.describe Transaction, type: :model do
     it { is_expected.to belong_to(:merchant) }
   end
 
+  describe 'scopes' do
+    include_context 'charge transaction record'
+    describe '#sort_by_created_at' do
+      it 'charge should be before authorize' do
+        charge_transaction.update!(created_at: 1.day.ago)
+        transaction = described_class.sort_by_created_at
+        expect(transaction).to eq [charge_transaction, authorize_transaction]
+      end
+    end
+  end
+
   describe '#approved?' do
     include_context 'authorize transaction record'
 
