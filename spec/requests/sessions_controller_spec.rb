@@ -4,13 +4,17 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: %i[api controller] do
   describe '#create' do
-    let!(:user) { create(:admin, email: 'test@test.com', password: '12345678', name: 'test') }
-    let(:user_type) { 'admin' }
-    it 'when login is successful' do
-      post_request(params: { email: 'test@test.com', password: '12345678', user_type: }, path: :create)
-      expect(session).to have_key(:auth_token)
-      expect(session[:auth_token]).not_to be_nil
-      # TO-DO test the redirect
+    context 'when user is admin' do
+      it_behave_likes 'successful login through sessions controller' do
+        let!(:user) { create(:admin, email: 'test@test.com', password: '12345678', name: 'test') }
+        let(:user_type) { 'admin' }
+      end
+    end
+    context 'when user is merchant' do
+      it_behave_likes 'successful login through sessions controller' do
+        let!(:user) { create(:merchant, email: 'test@test.com', password: '12345678', name: 'test') }
+        let(:user_type) { 'merchant' }
+      end
     end
 
     it 'when login is unsuccessful' do

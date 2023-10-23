@@ -32,6 +32,15 @@ RSpec.shared_examples 'user login controller' do
   end
 end
 
+RSpec.shared_examples 'successful login through sessions controller' do
+  it 'when login is successful' do
+    post_request(params: { email: 'test@test.com', password: '12345678', user_type: }, path: :create)
+    expect(session).to have_key(:auth_token)
+    expect(session[:auth_token]).not_to be_nil
+    expect(response).to redirect_to('/transactions')
+  end
+end
+
 RSpec.shared_examples 'user login service' do
   context '#success' do
     it 'when login successfully' do
