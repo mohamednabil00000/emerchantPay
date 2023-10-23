@@ -6,7 +6,9 @@ class MerchantsController < ApplicationController
 
   # GET /merchants
   def index
-    @merchants = Merchant.all
+    result = merchant_service.index(page: params[:page], limit: params[:limit])
+    @merchants = result.attributes[:merchants]
+    @num_of_pages = result.attributes[:num_of_pages]
   end
 
   # GET /merchants/:id/edit
@@ -14,21 +16,23 @@ class MerchantsController < ApplicationController
 
   # PATCH/PUT /merchants/:id
   def update
-    if @current_merchant.update(merchant_params)
+    result = merchant_service.update(merchant: current_merchant, new_attrs: merchant_params)
+    if result.successful?
       flash[:notice] = I18n.t('errors.messages.merchant_successfully_updated')
       redirect_to action: 'index'
     else
-      flash[:notice] = @current_merchant.errors.full_messages
+      flash[:notice] = result.attributes[:errors]
       redirect_to action: 'edit'
     end
   end
 
   # DELETE /merchants/:id
   def destroy
-    flash[:notice] = if @current_merchant.destroy
+    result = merchant_service.destroy(merchant: current_merchant)
+    flash[:notice] = if result.successful?
                        I18n.t('errors.messages.merchant_successfully_destroyed')
                      else
-                       @current_merchant.errors.full_messages
+                       result.attributes[:errors]
                      end
     redirect_to action: 'index'
   end
@@ -45,5 +49,9 @@ class MerchantsController < ApplicationController
 
   def merchant_params
     params.require(:merchant).permit(:name, :email, :status, :description)
+  end
+
+  def merchant_service
+    @merchant_service ||= MerchantService.new
   end
 end
