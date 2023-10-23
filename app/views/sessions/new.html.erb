@@ -3,11 +3,7 @@
         <%= image_tag("landing_page.png", :class => "h-100 w-100" )%>
     </div>
     <div class="col-md-6 mt-4">
-        <% flash.each do |type, msg| %>
-            <div>
-                <%= msg %>
-            </div>
-        <% end %>
-        <%= render "form" %>
+        <%= render partial: "shared/flash" %>
+        <%= render partial: "form" %>
     </div>
 </div>
