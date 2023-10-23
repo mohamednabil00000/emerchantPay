@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    email, password, user_type =  login_params.values
+    email, password, user_type = login_params.values
     result = auth_service.login(email:, password:, user_type:)
     if result.successful?
       session[:auth_token] = result.attributes[:token]
