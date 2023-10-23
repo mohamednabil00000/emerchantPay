@@ -24,15 +24,15 @@
                 <% @transactions.each do |transaction| %>
                     <tr>
                         <th scope="row"><%=transaction[:uuid] %></th>
-                        <td><%=transaction[:transaction_type] %></td>
-                        <td><%=transaction[:status] %></td>
-                        <td><%=transaction[:customer_email] %></td>
-                        <td><%=transaction[:customer_phone] %></td>
-                        <td><%=transaction[:amount] %></td>
-                        <td><%=transaction[:parent_uuid] %></td>
-                        <td><%=transaction[:created_at] %></td>
+                        <td><%=transaction.type %></td>
+                        <td><%=transaction.status %></td>
+                        <td><%=transaction.email %></td>
+                        <td><%=transaction.phone_number %></td>
+                        <td><%=transaction.amount %></td>
+                        <td><%=transaction.parent_uuid %></td>
+                        <td><%=transaction.created_at %></td>
                         <% if @user_type == 'admin' %>
-                            <td><%=transaction[:merchant_name]%> </td>
+                            <td><%=transaction.merchant.name%> </td>
                         <% end %>
                     </tr>
                 <% end %>

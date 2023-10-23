@@ -8,7 +8,8 @@ RSpec.shared_examples 'user login controller' do
       expect(response).to have_http_status(:ok)
       body = JSON.parse(response.body)
 
-      expect(body.keys).to match_array(%w[token name email status])
+      expect(body.keys).to match_array(%w[id token name email status])
+      expect(body['id']).to eq user.id
       expect(body['name']).to eq user.name
       expect(body['status']).to eq user.status
       expect(body['email']).to eq user.email
@@ -79,6 +80,7 @@ RSpec.shared_examples 'user login presenter' do
   it 'present login data' do
     data = described_class.login(user:, token:)
     expected_json = {
+      id: user.id,
       name: user.name,
       email: user.email,
       status: user.status,

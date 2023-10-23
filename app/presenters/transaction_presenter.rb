@@ -16,10 +16,4 @@ class TransactionPresenter
       created_at: transaction.created_at
     }
   end
-
-  def self.transactions(transactions:)
-    transactions.map do |transaction|
-      transaction(transaction:)
-    end
-  end
 end
