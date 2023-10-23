@@ -14,7 +14,7 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Reference Transaction</th>
                 <th scope="col">created_at</th>
-                <% if @user_type == 'admin' %>
+                <% if @current_user[:user_type] == 'admin' %>
                     <th scope="col">Merchant name</th>
                 <% end %>
 
@@ -31,7 +31,7 @@
                         <td><%=transaction[:amount] %></td>
                         <td><%=transaction[:parent_uuid] %></td>
                         <td><%=transaction[:created_at] %></td>
-                        <% if @user_type == 'admin' %>
+                        <% if @current_user[:user_type] == 'admin' %>
                             <td><%=transaction[:merchant_name]%> </td>
                         <% end %>
                     </tr>

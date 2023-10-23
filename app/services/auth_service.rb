@@ -22,7 +22,7 @@ class AuthService
   rescue JWT::ExpiredSignature, JWT::DecodeError
     ResultError.new
   end
-
+  
   private
 
   def user_factory
