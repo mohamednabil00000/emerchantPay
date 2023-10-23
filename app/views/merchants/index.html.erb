@@ -6,46 +6,29 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">UUID</th>
-                <th scope="col">Type</th>
-                <th scope="col">Status</th>
-                <th scope="col">Customer email</th>
-                <th scope="col">Customer phone</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Reference Transaction</th>
-                <th scope="col">created_at</th>
-                <% if @current_user[:user_type] == 'admin' %>
-                    <th scope="col">Merchant name</th>
-                <% end %>
-
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Description</th>
+                <th scope="col">Total transactions sum</th>
+                <th scope="col">Updated at</th>
+                <th scope="col" colspan="3">Actions</th>
             </tr>
             </thead>
             <tbody>
-                <% @transactions.each do |transaction| %>
+                <% @merchants.each do |merchant| %>
                     <tr>
-                        <th scope="row"><%=transaction[:uuid] %></th>
-                        <td><%=transaction[:transaction_type] %></td>
-                        <td><%=transaction[:status] %></td>
-                        <td><%=transaction[:customer_email] %></td>
-                        <td><%=transaction[:customer_phone] %></td>
-                        <td><%=transaction[:amount] %></td>
-                        <td><%=transaction[:parent_uuid] %></td>
-                        <td><%=transaction[:created_at] %></td>
-                        <% if @current_user[:user_type] == 'admin' %>
-                            <td><%=transaction[:merchant_name]%> </td>
-                        <% end %>
+                        <th scope="row"><%=merchant[:id] %></th>
+                        <td><%=merchant[:name] %></td>
+                        <td><%=merchant[:email] %></td>
+                        <td><%=merchant[:description] %></td>
+                        <td><%=merchant[:total_transaction_sum] %></td>
+                        <td><%=merchant[:updated_at] %></td>
+                        <td><%= link_to 'Edit', edit_merchant_path(merchant), class: 'btn btn-success' %></td>
+                        <td><%=link_to('Delete', merchant_path(merchant), data: { turbo_method: :delete }, :confirm => "Are you sure?", class: 'btn btn-danger')%></td>
                     </tr>
                 <% end %>
             </tbody>
         </table>
     <div>
-    <div class="row">
-        <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <% (1..@num_of_pages).to_a.each do |page_num| %>
-                <li class="page-item"><a class="page-link" href="/transactions?page=<%=page_num%>"><%= page_num %></a></li>
-            <% end %>
-        </ul>
-        </nav>
-    </div>
 </div>
