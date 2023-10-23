@@ -2,9 +2,9 @@
 
 require 'csv'
 
-namespace :import_users do
+namespace :users do
   desc 'import users'
-  task :import_users, [:csv_file_path] => :environment do |_t, args|
+  task :import, [:csv_file_path] => :environment do |_t, args|
     csv_file_path = args[:csv_file_path]
     CSV.foreach(csv_file_path, headers: true) do |row|
       row_hash = row.to_h

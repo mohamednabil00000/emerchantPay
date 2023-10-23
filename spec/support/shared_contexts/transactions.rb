@@ -18,6 +18,18 @@ RSpec.shared_context 'charge transaction record' do
   end
 end
 
+RSpec.shared_context 'charge transaction record from one hour ago' do
+  let!(:merchant) { create(:merchant, email: 'test2@gmail.com') }
+  let!(:authorize_transaction) do
+    create(:authorize_transaction, email: 'test@gmail.com', merchant_id: merchant.id, status: :approved,
+                                   created_at: 58.minutes.ago)
+  end
+  let!(:charge_transaction) do
+    create(:charge_transaction, email: 'test@gmail.com', merchant_id: merchant.id, status: :approved,
+                                parent_uuid: authorize_transaction.uuid, created_at: 1.hour.ago)
+  end
+end
+
 RSpec.shared_context 'authorize and charge transactions json' do
   let(:expected_authorize_json) do
     {

@@ -11,6 +11,7 @@ class Transaction < ApplicationRecord
   validates :status, inclusion: { in: statuses }
 
   scope :sort_by_created_at, -> { order(:created_at) }
+  scope :older_than_one_hour, -> { where('created_at <= ?', 1.hour.ago) }
 
   def approved?
     status == 'approved'

@@ -10,6 +10,9 @@ rm -f /app/tmp/pids/server.pid
 # Prepare DB (Migrate - If not? Create db & Migrate)
 sh /usr/bin/prepare-db.sh
 
+# Update cron jobs
+sh /usr/bin/prepare-cron-jobs.sh
+
 # Pre-comple app assets
 #sh ./docker/asset-pre-compile.sh
 
