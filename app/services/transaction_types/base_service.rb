@@ -11,26 +11,16 @@ module TransactionTypes
     end
 
     def index
-      @transactions = Transaction.sort_by_created_at.includes(:merchant)
+      @transactions = Transaction.includes(:merchant)
       @transactions = @transactions.where(merchant_id: current_user.id) if merchant?
+      @transactions = @transactions.sort_by_created_at.paginate(page: args&.dig(:page))
 
-      num_of_pages = 1
-
-      if pagination?
-        num_of_pages = pagination.num_of_pages
-        @transactions = @transactions.limit(pagination.limit).offset(pagination.offset)
-      end
-
-      ResultSuccess.new({ transactions: @transactions, num_of_pages: })
+      ResultSuccess.new({ transactions: @transactions })
     end
 
     protected
 
     attr_reader :args
-
-    def pagination?
-      args&.dig(:page).present?
-    end
 
     def merchant?
       args[:user_type] == 'merchant'
@@ -38,10 +28,6 @@ module TransactionTypes
 
     def current_user
       args[:current_user]
-    end
-
-    def pagination
-      @pagination ||= Pagination.new(count: @transactions.size, page: args&.dig(:page), limit: args&.dig(:limit))
     end
   end
 end

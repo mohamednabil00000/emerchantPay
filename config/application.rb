@@ -21,6 +21,8 @@ module EmerchantPay
 
     HOSTNAME = ENV.fetch('HOSTNAME', nil)
 
+    WillPaginate.per_page = 10
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
