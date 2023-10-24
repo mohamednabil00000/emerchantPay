@@ -4,7 +4,7 @@
   .row
     table.table
       thead
-        tr
+        tr.text-center
           th[scope="col"]
             | UUID
           th[scope="col"]
@@ -26,7 +26,7 @@
               | Merchant name
       tbody
         - @transactions.each do |transaction|
-          tr
+          tr.text-center
             th[scope="row"]
               =transaction[:uuid]
             td

@@ -1,6 +1,6 @@
 table.table
   thead
-    tr
+    tr.text-center
       th[scope="col"]
         | ID
       th[scope="col"]
@@ -19,7 +19,7 @@ table.table
         | Actions
   tbody
     - @merchants.each do |merchant|
-      tr
+      tr.text-center
         th[scope="row"]
           =merchant[:id]
         td
