@@ -2,8 +2,13 @@
 
 ## Description
 It is a simple payment system. consist of two roles(admin and merchant) and three views and one API. Each role has some views and APIs.
- - admin has all transactions view and merchants view with edit & destroy actions.
- - merchant has transacitions view for his transactions only and also has POST API for create transaction.
+ - admin:
+  * has transactions view for all merchants transactions.
+  * has merchants view with edit & destroy actions.
+
+ - merchant:
+  * has transacitions view for his transactions only.
+  * has one POST API for create transaction(POST /api/v1/transactions).
 
 There is a postman scenario in the app that contains all kind of transactions and also the login for merchant. All you need is to login by merchant to take the auth token and then put it in the rest of apis to create transactions.
 ## Features
