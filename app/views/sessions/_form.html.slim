@@ -1,0 +1,28 @@
+.container
+  center
+    h2
+      | Please sign in
+  = form_with url: "/sessions", method: :post do |f|
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :email, "Email Address"
+          br
+          = f.email_field :email, :class => 'form-control', :required => true
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :password, "Password"
+          br
+          = f.password_field :password, :class => 'form-control', :required => true
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.radio_button :user_type, 'merchant', :checked => true
+          = label :user_type_merchant, 'Merchant'
+          = f.radio_button :user_type, 'admin'
+          = label :user_type_admin, 'Admin'
+    .field.mt-4
+      .row
+        .col-md-12.offset-2
+          = f.submit "Login", :class => 'btn btn-success'

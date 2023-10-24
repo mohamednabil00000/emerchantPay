@@ -1,0 +1,50 @@
+.container
+  .row.mb-5
+    = render partial: 'shared/navbar'
+  .row
+    table.table
+      thead
+        tr
+          th[scope="col"]
+            | UUID
+          th[scope="col"]
+            | Type
+          th[scope="col"]
+            | Status
+          th[scope="col"]
+            | Customer email
+          th[scope="col"]
+            | Customer phone
+          th[scope="col"]
+            | Amount
+          th[scope="col"]
+            | Reference Transaction
+          th[scope="col"]
+            | created_at
+          - if @user_type == 'admin'
+            th[scope="col"]
+              | Merchant name
+      tbody
+        - @transactions.each do |transaction|
+          tr
+            th[scope="row"]
+              =transaction[:uuid]
+            td
+              =transaction.type
+            td
+              =transaction.status
+            td
+              =transaction.email
+            td
+              =transaction.phone_number
+            td
+              =transaction.amount
+            td
+              =transaction.parent_uuid
+            td
+              =transaction.created_at
+            - if @user_type == 'admin'
+              td
+                =transaction.merchant.name
+    div
+      = will_paginate @transactions

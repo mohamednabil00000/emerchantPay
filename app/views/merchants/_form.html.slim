@@ -1,0 +1,34 @@
+.container
+  center
+    h2
+      | Update 
+      =@current_merchant.name
+  = form_with model: @current_merchant do |f|
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :email, "Email Address"
+          br
+          = f.email_field :email, :class => 'form-control', :required => true
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :name, "Name"
+          br
+          = f.text_field :name, :class => 'form-control', :required => true
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :description, "Description"
+          br
+          = f.text_field :description, :class => 'form-control', :required => true
+    .field.mt-2
+      .row
+        .col-md-8.offset-2
+          = f.label :status, "Status"
+          br
+          = f.select(:status, options_for_select(["inactive", "active"], f.object.status), {} , { :class => 'form_control form-select' })
+    .field.mt-4
+      .row
+        .col-md-12.offset-2
+          = f.submit "Update", :class => 'btn btn-success'
