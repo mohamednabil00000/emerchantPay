@@ -1,7 +1,11 @@
 # README
 
-It is a simple payment system.
+## Description
+It is a simple payment system. consist of two roles(admin and merchant) and three views and one API. Each role has some views and APIs.
+ - admin has all transactions view and merchants view with edit & destroy actions.
+ - merchant has transacitions view for his transactions only and also has POST API for create transaction.
 
+There is a postman scenario in the app that contains all kind of transactions and also the login for merchant. All you need is to login by merchant to take the auth token and then put it in the rest of apis to create transactions.
 ## Features
 * Rails 7
 * Ruby 3.2.1
@@ -9,13 +13,16 @@ It is a simple payment system.
 * PostgreSQL database
 * Rubocop for linting
 * Rspec & Factorybot
+* Integration tests using Capybara
 * Slim view engine
 * GitHub Actions for
   * tests
   * Rubocop for linting
 
-## Assumptions
-
+## Screenshots
+![Alt text](/screenshots/login_screen.png?raw=true "Login screen")
+![Alt text](/screenshots/merchants_screen.png?raw=true "Merchants table screen")
+![Alt text](/screenshots/transactions_screeen.png?raw=true "Transactions table screen")
 ## Requirements
 
 Please ensure you have docker & docker-compose
@@ -76,7 +83,7 @@ you can find it in postman folder.
 
 ## Seeds
 ```
-Already will run with the docker and the credentials are:
+Already will run within the docker and the credentials are:
 
 email: admin@gmail.com   password: 12345678   role: admin
 email: merchant@gmail.com   password: 12345678   role: merchant
