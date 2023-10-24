@@ -9,15 +9,12 @@ It is a simple payment system.
 * PostgreSQL database
 * Rubocop for linting
 * Rspec & Factorybot
+* Slim view engine
 * GitHub Actions for
   * tests
   * Rubocop for linting
 
 ## Assumptions
-- Amount is constant for all transactional types that belong to one transaction. That mean
-  the Refund transaction type will refund the whole amount not specific amount. I understood that
-  because we are going to change the status of Charge transaction to refunded and that's mean we 
-  refund the whole amount in charge transaction.
 
 ## Requirements
 
@@ -79,6 +76,8 @@ you can find it in postman folder.
 
 ## Seeds
 ```
+Already will run with the docker and the credentials are:
+
 email: admin@gmail.com   password: 12345678   role: admin
 email: merchant@gmail.com   password: 12345678   role: merchant
 ```
