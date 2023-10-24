@@ -22,8 +22,8 @@ There is a postman scenario in the app that contains all kind of transactions an
 ## Screenshots
 ![Alt text](/screenshots/login_screen.png?raw=true "Login screen")
 ![Alt text](/screenshots/merchants_screen.png?raw=true "Merchants table screen")
-![Alt text](/screenshots/transactions_admin_screeen.png?raw=true "Transactions admin table screen")
-![Alt text](/screenshots/transactions_merchant_screeen.png?raw=true "Transactions merchant table screen")
+![Alt text](/screenshots/transactions_admin_screen.png?raw=true "Transactions admin table screen")
+![Alt text](/screenshots/transactions_merchant_screen.png?raw=true "Transactions merchant table screen")
 ## Requirements
 
 Please ensure you have docker & docker-compose
