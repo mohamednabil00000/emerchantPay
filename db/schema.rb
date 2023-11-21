@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_112_424) do
     t.string 'password_digest', null: false
     t.string 'status', default: 'active'
     t.text 'description'
-    t.float 'total_transaction_sum', default: 0.0
+    t.decimal 'total_transaction_sum', default: '0.0'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['email'], name: 'unique_merchants_emails', unique: true
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_020_112_424) do
     t.uuid 'uuid', null: false
     t.string 'email'
     t.string 'phone_number'
-    t.float 'amount'
+    t.decimal 'amount'
     t.bigint 'merchant_id', null: false
     t.string 'type', null: false
     t.string 'status', default: 'error', null: false

@@ -8,7 +8,7 @@ class TransactionModel < ActiveRecord::Migration[7.0]
       t.uuid :uuid, null: false, index: { unique: true, name: 'unique_uuid' }
       t.string :email
       t.string :phone_number
-      t.float :amount
+      t.decimal :amount
       t.references :merchant, null: false
       t.string :type, null: false
       t.string :status, null: false, default: :error

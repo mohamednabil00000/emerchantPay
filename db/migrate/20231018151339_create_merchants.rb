@@ -8,7 +8,7 @@ class CreateMerchants < ActiveRecord::Migration[7.0]
       t.string :password_digest, null: false
       t.string :status, default: :active
       t.text :description
-      t.float :total_transaction_sum, default: 0.0
+      t.decimal :total_transaction_sum, default: 0.0
 
       t.timestamps
     end
